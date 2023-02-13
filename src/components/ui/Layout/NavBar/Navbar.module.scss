@@ -1,0 +1,7 @@
+.wrapper {
+  @apply w-full flex justify-between items-center border-b-2 border-gray-200 py-2 px-4;
+
+  .image {
+    @apply w-[100px] md:w-[130px];
+  }
+}
