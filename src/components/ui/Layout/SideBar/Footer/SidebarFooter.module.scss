@@ -1,0 +1,11 @@
+.wrapper {
+  @apply mt-6 hidden xl:block;
+
+  .content {
+    @apply flex flex-wrap gap-2;
+
+    .listItem {
+      @apply text-gray-400 text-sm hover:underline cursor-pointer
+    }
+  }
+}
