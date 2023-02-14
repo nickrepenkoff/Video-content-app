@@ -1,3 +1,39 @@
 .wrapper {
-  @apply flex flex-col border-b-2 border-gray-200 pb-6
+  @apply flex flex-col border-b-2 border-gray-200 pb-6;
+
+  .content {
+    @apply flex gap-3 p-2 cursor-pointer font-semibold rounded;
+
+    .userImage {
+      @apply md:w-16 md:h-16 w-10 h-10;
+    }
+
+    .user {
+      @apply flex items-center gap-2;
+
+      .userName {
+        @apply flex gap-2 items-center md:text-base font-bold text-primary;
+      }
+
+      .nickName {
+        @apply capitalize font-medium text-xs text-gray-500 hidden md:block;
+      }
+    }
+  }
+
+  .videoContent {
+    @apply lg:ml-20 flex gap-4 relative;
+    .video {
+      @apply lg:w-[600px] h-[300px] md:h-[400px] lg:h-[530px] w-[200px] cursor-pointer bg-gray-100;
+    }
+
+    .buttons {
+      @apply absolute bottom-6 cursor-pointer left-8 md:left-14 lg:left-0
+      flex gap-10 lg:justify-between w-[100px] md:w-[50px] p-3;
+
+      .button {
+        @apply text-black text-2xl lg:text-4xl;
+      }
+    }
+  }
 }
