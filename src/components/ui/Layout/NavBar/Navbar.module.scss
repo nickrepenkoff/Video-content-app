@@ -4,4 +4,12 @@
   .image {
     @apply w-[100px] md:w-[130px];
   }
+
+  .upload {
+    @apply flex gap-5 md:items-center md:gap-10;
+
+    .uploadButton {
+      @apply border-2 px-2 md:px-4 text-base font-semibold flex items-center gap-2;
+    }
+  }
 }
