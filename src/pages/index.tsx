@@ -1,18 +1,20 @@
-import Head from 'next/head'
-import { NextPage } from 'next'
+import { GetServerSideProps, NextPage } from 'next'
+import axios from 'axios'
+import Home from '@/components/screens/Home/Home'
+import { IHome } from '@/components/screens/Home/IHome'
 
-const Home: NextPage = () => {
-	return (
-		<>
-			<Head>
-				<title>Video App</title>
-				<meta name="viewport" content="width=device-width, initial-scale=1" />
-			</Head>
-			<main>
-				<h1 className="text-3xl font-bold underline">Main content</h1>
-			</main>
-		</>
-	)
+const HomePage: NextPage<IHome> = props => {
+	return <Home {...props} />
 }
 
-export default Home
+export const getServerSideProps: GetServerSideProps<IHome> = async () => {
+	const { data } = await axios.get(`http://localhost:3000/api/post`)
+
+	return {
+		props: {
+			videos: data,
+		},
+	}
+}
+
+export default HomePage
