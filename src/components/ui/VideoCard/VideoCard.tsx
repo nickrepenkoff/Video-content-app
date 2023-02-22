@@ -1,4 +1,4 @@
-import React, { FC, useRef, useState } from 'react'
+import React, { FC, useEffect, useRef, useState } from 'react'
 import { IVideo } from '@/components/screens/Home/IHome'
 import styles from './VideoCard.module.scss'
 import Link from 'next/link'
@@ -23,6 +23,12 @@ const VideoCard: FC<{ post: IVideo }> = ({ post }) => {
 			setPlaying(true)
 		}
 	}
+
+	useEffect(() => {
+		if (videoRef?.current) {
+			videoRef.current.muted = isMuted
+		}
+	}, [isMuted])
 
 	return (
 		<div className={styles.wrapper}>
@@ -62,7 +68,7 @@ const VideoCard: FC<{ post: IVideo }> = ({ post }) => {
 					onMouseEnter={() => setIsHover(true)}
 					onMouseLeave={() => setIsHover(false)}
 				>
-					<Link href="/">
+					<Link href={`/detail/${post._id}`}>
 						<video
 							src={post.video.asset.url}
 							loop
