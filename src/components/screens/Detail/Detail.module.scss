@@ -1,0 +1,19 @@
+.userBlock {
+  @apply flex gap-3 p-2 cursor-pointer font-semibold rounded;
+
+  .userImage {
+    @apply md:w-20 md:h-20 w-16 h-16 ml-4;
+  }
+
+  .user {
+    @apply flex flex-col gap-2 mt-3;
+
+    .userName {
+      @apply flex gap-2 items-center md:text-base font-bold text-primary;
+    }
+
+    .nickName {
+      @apply capitalize font-medium text-xs text-gray-500 hidden md:block;
+    }
+  }
+}
