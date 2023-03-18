@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { FormEvent, useEffect, useRef, useState } from 'react'
 import Layout from '@/components/ui/Layout/Layout'
 import { NextPage } from 'next'
 import Image from 'next/image'
@@ -20,6 +20,8 @@ const Detail: NextPage<IDetailProps> = ({ postDetails }) => {
 	const [post, setPost] = useState(postDetails)
 	const [isPlaying, setIsPlaying] = useState(false)
 	const [isMuted, setIsMuted] = useState(false)
+	const [comment, setComment] = useState('')
+	const [isPosted, setIsPosted] = useState(false)
 	const videoRef = useRef<HTMLVideoElement>(null)
 	const router = useRouter()
 	const { userProfile }: any = useAuthStore()
@@ -51,6 +53,19 @@ const Detail: NextPage<IDetailProps> = ({ postDetails }) => {
 			})
 
 			setPost({ ...post, likes: data.likes })
+		}
+	}
+
+	const addComment = async (event: FormEvent<HTMLFormElement>) => {
+		event.preventDefault()
+
+		if (userProfile && comment) {
+			setIsPosted(true)
+
+			const response = await axios.put(`${BASE_URL}/api/post/${post._id}}`, {
+				userId: userProfile._id,
+				comment,
+			})
 		}
 	}
 
@@ -140,7 +155,13 @@ const Detail: NextPage<IDetailProps> = ({ postDetails }) => {
 								/>
 							)}
 						</div>
-						<Comments />
+						<Comments
+							comment={comment}
+							comments={post.comments}
+							setComment={setComment}
+							addComment={addComment}
+							isPosted={isPosted}
+						/>
 					</div>
 				</div>
 			</div>
